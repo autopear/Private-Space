@@ -1,0 +1,15 @@
+Package: com.autopear.privatespace
+Depends: firmware (>= 6.0), mobilesubstrate, preferenceloader (>= 2.2.0-1), applist (>= 1.5.3)
+Name: Private Space
+Version: 1.1
+Architecture: iphoneos-arm
+Description: Disable iOS 6 social sharing features
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=privatespaceDp
+Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=privatespaceDp
+Maintainer: BigBoss <bigboss@thebigboss.org>
+Author: Merlin <lonelystars@gmail.com>
+Sponsor: thebigboss.org <http://thebigboss.org>
+Section: Tweaks
+dev: lonelystars
+Tag: purpose::extension, role::enduser
+Icon: file:///System/Library/WeeAppPlugins/SocialWeeApp.bundle/ShareWidget@2x.png
