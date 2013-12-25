@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ -e /System/Library/PrivateFrameworks/PhotosUI.framework ]; then
+	mv -f /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace7.plist /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace.plist
+	rm -f /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace6.plist
+else
+	mv -f /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace6.plist /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace.plist
+	rm -f /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace7.plist
+fi
+exit 0
