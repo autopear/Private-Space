@@ -6,6 +6,8 @@
 	<dict>
 		<key>cell</key>
 		<string>PSLinkCell</string>
+		<key>icon</key>
+		<string>icon.png</string>
 		<key>label</key>
 		<string>Private Space</string>
 	</dict>
