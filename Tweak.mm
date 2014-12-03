@@ -1,26 +1,24 @@
 #import <Accounts/Accounts.h>
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import <CaptainHook/CaptainHook.h>
 #include <objc/runtime.h>
-#import "CaptainHook.h"
 
 #define PreferencesChangedNotification "com.autopear.privatespace.preferenceschanged"
 #define PreferencesFilePath @"/var/mobile/Library/Preferences/com.autopear.privatespace.plist"
 
-@interface PSSpecifier : NSObject {
-}
+@interface PSSpecifier : NSObject
 @property(retain) NSString * identifier;
 @end
 
-@interface PSListController {
-}
--(void)removeSpecifier:(PSSpecifier *)specifier animated:(BOOL)animate;
--(void)removeSpecifier:(PSSpecifier *)specifier;
--(PSSpecifier *)specifierForID:(NSString *)identifier;
--(void)insertSpecifier:(PSSpecifier *)specifier afterSpecifier:(PSSpecifier *)specifier;
--(int)indexOfSpecifier:(PSSpecifier *)specifier;
--(void)removeSpecifierAtIndex:(int)index;
-- (id)specifiers;
+@interface PSListController
+- (void)removeSpecifier:(PSSpecifier *)specifier animated:(BOOL)animate;
+- (void)removeSpecifier:(PSSpecifier *)specifier;
+- (PSSpecifier *)specifierForID:(NSString *)identifier;
+- (void)insertSpecifier:(PSSpecifier *)specifier afterSpecifier:(PSSpecifier *)specifier;
+- (int)indexOfSpecifier:(PSSpecifier *)specifier;
+- (void)removeSpecifierAtIndex:(int)index;
+- (NSArray *)specifiers;
 @end
 
 @interface PrefsListController {
@@ -34,102 +32,86 @@
 }
 @end
 
-@interface SoundsPrefController {
-}
--(void)removeSpecifierID:(NSString *)specifierID;
+@interface SoundsPrefController
+- (void)removeSpecifierID:(NSString *)specifierID;
 @end
 
-@interface PrivacyController {
-}
--(void)removeSpecifierID:(NSString *)specifierID;
+@interface PrivacyController
+- (void)removeSpecifierID:(NSString *)specifierID;
 @end
 
-@interface SBWeeApp {
-}
-@property(readonly, nonatomic) NSString *sectionID; // @synthesize sectionID=_sectionID;
+@interface SBWeeApp
+@property(readonly, nonatomic) NSString *sectionID;
 @end
 
-@interface AddBookmarkUIActivity : UIActivity {
-}
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
+@interface AddBookmarkUIActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface AddToHomeScreenUIActivity : UIActivity {
-}
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
+@interface AddToHomeScreenUIActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface AddToReadingListUIActivity : UIActivity {
-}
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
+@interface AddToReadingListUIActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUYoukuActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUYoukuActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUTudouActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUTudouActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUYouTubeActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUYouTubeActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUWallpaperActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUWallpaperActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUMailActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUMailActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUMessageActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUMessageActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUSaveToCameraRollActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUSaveToCameraRollActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUPublishingActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUPublishingActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUAssignToContactActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUAssignToContactActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUAlbumStreamActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUAlbumStreamActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUAirPlayActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUAirPlayActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
-@interface PUSlideShowActivity : UIActivity {
-}
-- (BOOL)canPerformWithActivityItems:(id)arg1;
+@interface PUSlideShowActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
+@end
+
+@interface PUEditPluginActivity : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
 @interface UIAlertButton : UIButton {
     float _imageOffset;
 }
-
 @property float imageOffset;
-
 - (id)image;
 - (float)imageOffset;
 - (id)initWithTitle:(id)arg1;
@@ -197,6 +179,8 @@ static BOOL hideMMS = NO;
 static BOOL hidePhotoStream = NO;
 static BOOL hidePublish = NO;
 static BOOL hideAirDrop = NO;
+static BOOL hideOpenWith = NO;
+static BOOL hideQuickLook = NO;
 //App Store & iTunes
 static BOOL hideGift = NO;
 //Safari
@@ -204,11 +188,10 @@ static BOOL hideBookmark = NO;
 static BOOL hideHomeScreen = NO;
 static BOOL hideReadingList = NO;
 //Photo
-static BOOL hideSlideShow = NO;
 static BOOL hideAirPlay = NO;
+static BOOL hideSlideShow = NO;
 
-static void LoadPreferences()
-{
+static void LoadPreferences() {
     NSDictionary *prefs = [[NSDictionary alloc] initWithContentsOfFile:PreferencesFilePath];
 
     if ([prefs objectForKey:@"PSEnabled"])
@@ -282,22 +265,20 @@ static void LoadPreferences()
     NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
     // If dylib load to daemon, bundleIdentifier = nil.
     // stringByAppendingString:nil call will crash daemon.
-    if (bundleIdentifier)
-    {
+    if (bundleIdentifier) {
         id disablePref = [prefs objectForKey:[@"PSFacebook-" stringByAppendingString:bundleIdentifier]];
         isAppBlockFacebook = disablePref ? [disablePref boolValue] : YES;
-    
+
         disablePref = [prefs objectForKey:[@"PSTwitter-" stringByAppendingString:bundleIdentifier]];
         isAppBlockTwitter = disablePref ? [disablePref boolValue] : YES;
-    
+
         disablePref = [prefs objectForKey:[@"PSWeibo-" stringByAppendingString:bundleIdentifier]];
         isAppBlockWeibo = disablePref ? [disablePref boolValue] : YES;
-    
+
         disablePref = [prefs objectForKey:[@"PSOthers-" stringByAppendingString:bundleIdentifier]];
         isAppBlockOthers = disablePref ? [disablePref boolValue] : YES;
-    
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             disablePref = [prefs objectForKey:[@"PSTencentWeibo-" stringByAppendingString:bundleIdentifier]];
             isAppBlockTencentWeibo = disablePref ? [disablePref boolValue] : YES;
 
@@ -404,19 +385,28 @@ static void LoadPreferences()
     else
         hideReadingList = NO;
 
-    if (kCFCoreFoundationVersionNumber >= 847.20)
-    {
+    if ([prefs objectForKey:@"PSOpenWithInActivity"])
+        hideOpenWith = [[prefs objectForKey:@"PSOpenWithInActivity"] boolValue];
+    else
+        hideOpenWith = NO;
+
+    if ([prefs objectForKey:@"PSQuickLookInActivity"])
+        hideQuickLook = [[prefs objectForKey:@"PSQuickLookInActivity"] boolValue];
+    else
+        hideQuickLook = NO;
+
+    if (kCFCoreFoundationVersionNumber >= 847.20) {
         //Tencent Weibo
         if ([prefs objectForKey:@"PSTencentWeiboInSettings"])
             hideTencentWeiboInSettings = [[prefs objectForKey:@"PSTencentWeiboInSettings"] boolValue];
         else
             hideTencentWeiboInSettings = NO;
-    
+
         if ([prefs objectForKey:@"PSTencentWeiboInActivity"])
             hideTencentWeiboInActivity = [[prefs objectForKey:@"PSTencentWeiboInActivity"] boolValue];
         else
             hideTencentWeiboInActivity = NO;
-    
+
         if ([prefs objectForKey:@"PSTencentWeiboComposer"])
             hideTencentWeiboComposer = [[prefs objectForKey:@"PSTencentWeiboComposer"] boolValue];
         else
@@ -432,97 +422,93 @@ static void LoadPreferences()
             hideVimeoInSettings = [[prefs objectForKey:@"PSVimeoInSettings"] boolValue];
         else
             hideVimeoInSettings = NO;
-    
+
         //Flickr
         if ([prefs objectForKey:@"PSFlickrInSettings"])
             hideFlickrInSettings = [[prefs objectForKey:@"PSFlickrInSettings"] boolValue];
         else
             hideFlickrInSettings = NO;
-    
+
         //Air Drop
         if ([prefs objectForKey:@"PSAirDropInActivity"])
             hideAirDrop = [[prefs objectForKey:@"PSAirDropInActivity"] boolValue];
         else
             hideAirDrop = NO;
-        
+
         //Photo
         if ([prefs objectForKey:@"PSAirPlayInActivity"])
             hideAirPlay = [[prefs objectForKey:@"PSAirPlayInActivity"] boolValue];
         else
-            hideAirPlay = NO;        
+            hideAirPlay = NO;
 
         if ([prefs objectForKey:@"PSSlideShowInActivity"])
             hideSlideShow = [[prefs objectForKey:@"PSSlideShowInActivity"] boolValue];
         else
-            hideSlideShow = NO;        
+            hideSlideShow = NO;
     }
 
     [prefs release];
 }
 
-static void PreferencesChangedCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
-{
+static void PreferencesChangedCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
     LoadPreferences();
 }
 
- %hook UIActivityViewController
--(NSArray *)excludedActivityTypes
-{
+%hook UIActivityViewController
 
+- (NSArray *)excludedActivityTypes {
     NSMutableArray *excludes = [NSMutableArray arrayWithArray:%orig];
 
-    if (tweakEnabled)
-    {
+    if (tweakEnabled) {
         if (hideFacebookInActivity && isAppBlockFacebook && ![excludes containsObject:UIActivityTypePostToFacebook])
             [excludes addObject:UIActivityTypePostToFacebook];
-    
+
         if (hideTwitterInActivity && isAppBlockTwitter && ![excludes containsObject:UIActivityTypePostToTwitter])
             [excludes addObject:UIActivityTypePostToTwitter];
-    
+
         if (hideWeiboInActivity && isAppBlockWeibo && ![excludes containsObject:UIActivityTypePostToWeibo])
             [excludes addObject:UIActivityTypePostToWeibo];
-    
+
         if (hideMessage && isAppBlockOthers && ![excludes containsObject:UIActivityTypeMessage])
             [excludes addObject:UIActivityTypeMessage];
-    
+
         if (hideMail && isAppBlockOthers && ![excludes containsObject:UIActivityTypeMail])
             [excludes addObject:UIActivityTypeMail];
-    
+
         if (hidePrint && isAppBlockOthers && ![excludes containsObject:UIActivityTypePrint])
             [excludes addObject:UIActivityTypePrint];
-    
+
         if (hideCopy && isAppBlockOthers && ![excludes containsObject:UIActivityTypeCopyToPasteboard])
             [excludes addObject:UIActivityTypeCopyToPasteboard];
-    
+
         if (hideCamera && isAppBlockOthers && ![excludes containsObject:UIActivityTypeSaveToCameraRoll])
             [excludes addObject:UIActivityTypeSaveToCameraRoll];
-    
+
         if (hidePhotoStream && isAppBlockOthers && ![excludes containsObject:@"PLActivityTypeAlbumStream"])
             [excludes addObject:@"PLActivityTypeAlbumStream"];
-    
+
         if (hideYouTube && isAppBlockOthers && ![excludes containsObject:@"PLActivityTypePublishToYouTube"])
             [excludes addObject:@"PLActivityTypePublishToYouTube"];
-    
+
         if (hideTudou && isAppBlockOthers && ![excludes containsObject:@"PLActivityTypePublishToTudou"])
             [excludes addObject:@"PLActivityTypePublishToTudou"];
-    
+
         if (hideYouku && isAppBlockOthers && ![excludes containsObject:@"PLActivityTypePublishToYouku"])
             [excludes addObject:@"PLActivityTypePublishToYouku"];
-    
+
         if (hideWallpaper && isAppBlockOthers && ![excludes containsObject:@"PLActivityTypeUseAsWallpaper"])
             [excludes addObject:@"PLActivityTypeUseAsWallpaper"];
-    
+
         if (hideGift && isAppBlockOthers && ![excludes containsObject:@"com.apple.AppStore.gift"])
             [excludes addObject:@"com.apple.AppStore.gift"];
-    
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (hideTencentWeiboInActivity && isAppBlockTencentWeibo && ![excludes containsObject:UIActivityTypePostToTencentWeibo])
                 [excludes addObject:UIActivityTypePostToTencentWeibo];
-        
+
             if (hideFlickrInActivity && isAppBlockFlickr && ![excludes containsObject:UIActivityTypePostToFlickr])
                 [excludes addObject:UIActivityTypePostToFlickr];
-        
+
             if (hideVimeoInActivity && isAppBlockVimeo && ![excludes containsObject:UIActivityTypePostToVimeo])
                 [excludes addObject:UIActivityTypePostToVimeo];
 
@@ -531,9 +517,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
             if (hideReadingList && ![excludes containsObject:UIActivityTypeAddToReadingList])
                 [excludes addObject:UIActivityTypeAddToReadingList];
-        }
-        else
-        {
+        } else {
             if (hideVimeoInActivity && isAppBlockOthers && ![excludes containsObject:@"PLActivityTypePublishToVimeo"])
                 [excludes addObject:@"PLActivityTypePublishToVimeo"];
 
@@ -541,8 +525,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
                 [excludes addObject:@"PLActivityTypePublishToFlickr"];
         }
 
-        if (hideContacts && isAppBlockOthers)
-        {
+        if (hideContacts && isAppBlockOthers) {
             if (![excludes containsObject:UIActivityTypeAssignToContact])
                 [excludes addObject:UIActivityTypeAssignToContact];
             if (![excludes containsObject:@"PLActivityTypeAssignToContact"])
@@ -555,54 +538,49 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 %end
 
 %hook PrefsListController
--(NSArray *)specifiers
-{
+
+- (NSArray *)specifiers {
     NSArray *specs = [NSArray arrayWithArray:%orig];
 
     weiboSpecifier = CHIvar(self, _weiboSpecifier, PSSpecifier *);
     facebookSpecifier = CHIvar(self, _facebookSpecifier, PSSpecifier *);
     twitterSpecifier = CHIvar(self, _twitterSpecifier, PSSpecifier *);
 
-    if (kCFCoreFoundationVersionNumber >= 847.20)
-    {
+    if (kCFCoreFoundationVersionNumber >= 847.20) {
         vimeoSpecifier = CHIvar(self, _vimeoSpecifier, PSSpecifier *);
         flickrSpecifier = CHIvar(self, _flickrSpecifier, PSSpecifier *);
         tencentWeiboSpecifier = CHIvar(self, _tencentweiboSpecifier, PSSpecifier *);
     }
-    
+
     return specs;
 }
+
 %end
 
 %hook PSListController
--(void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     %orig;
 
-    if (tweakEnabled)
-    {
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+    if (tweakEnabled) {
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (forceWeiboEnabled && !hideWeiboInSettings && ![self specifierForID:@"WEIBO"] && [self specifierForID:@"VIMEO"])
                 [self insertSpecifier:weiboSpecifier afterSpecifier:[self specifierForID:@"VIMEO"]];
-            if (forceTencentWeiboEnabled && !hideTencentWeiboInSettings && ![self specifierForID:@"TENCENT_WEIBO"])
-            {
+            if (forceTencentWeiboEnabled && !hideTencentWeiboInSettings && ![self specifierForID:@"TENCENT_WEIBO"]) {
                 if ([self specifierForID:@"WEIBO"])
                     [self insertSpecifier:tencentWeiboSpecifier afterSpecifier:[self specifierForID:@"WEIBO"]];
                 else if ([self specifierForID:@"VIMEO"])
                     [self insertSpecifier:tencentWeiboSpecifier afterSpecifier:[self specifierForID:@"VIMEO"]];
-                else
-                {}
+                else {
+                }
             }
-        }
-        else
-        {
+        } else {
             if (forceWeiboEnabled && !hideWeiboInSettings && ![self specifierForID:@"WEIBO"])
                 [self insertSpecifier:weiboSpecifier afterSpecifier:facebookSpecifier];
         }
-    
+
         int groupIndex = [self indexOfSpecifier:facebookSpecifier] - 2;
-    
+
         if (hideFacebookInSettings)
             [self removeSpecifier:[self specifierForID:@"FACEBOOK"]];
         if (hideTwitterInSettings)
@@ -610,8 +588,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
         if (hideWeiboInSettings)
             [self removeSpecifier:[self specifierForID:@"WEIBO"]];
 
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (hideTencentWeiboInSettings)
                 [self removeSpecifier:[self specifierForID:@"TENCENT_WEIBO"]];
             if (hideVimeoInSettings)
@@ -619,66 +596,51 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
             if (hideFlickrInSettings)
                 [self removeSpecifier:[self specifierForID:@"FLICKR"]];
         }
-    
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (![self specifierForID:@"TWITTER"] && ![self specifierForID:@"FACEBOOK"] && ![self specifierForID:@"WEIBO"] && ![self specifierForID:@"TENCENT_WEIBO"] && ![self specifierForID:@"VIMEO"] && ![self specifierForID:@"FLICKR"])
                 [self removeSpecifierAtIndex:groupIndex];
-        }
-        else
-        {
+        } else {
             if (![self specifierForID:@"TWITTER"] && ![self specifierForID:@"FACEBOOK"] && ![self specifierForID:@"WEIBO"])
                 [self removeSpecifierAtIndex:groupIndex];
         }
     }
 }
 
-- (void)removeSpecifier:(PSSpecifier *)specifier animated:(BOOL)animated
-{
-    if (tweakEnabled)
-    {
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+- (void)removeSpecifier:(PSSpecifier *)specifier animated:(BOOL)animated {
+    if (tweakEnabled) {
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (!(forceWeiboEnabled && !hideWeiboInSettings && [specifier.identifier isEqualToString:@"WEIBO"]))
                 %orig(specifier, animated);
-        }
-        else
-        {
+        } else {
             if (!(forceWeiboEnabled && !hideWeiboInSettings && [specifier.identifier isEqualToString:@"WEIBO"]) && !(forceTencentWeiboEnabled && !hideTencentWeiboInSettings && [specifier.identifier isEqualToString:@"TENCENT_WEIBO"]))
                 %orig(specifier, animated);
         }
-    }
-    else
+    } else
         %orig(specifier, animated);
 }
 
-- (void)removeSpecifier:(PSSpecifier *)specifier
-{
-    if (tweakEnabled)
-    {
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+- (void)removeSpecifier:(PSSpecifier *)specifier {
+    if (tweakEnabled) {
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (!(forceWeiboEnabled && !hideWeiboInSettings && [specifier.identifier isEqualToString:@"WEIBO"]))
                 %orig(specifier);
-        }
-        else
-        {
+        } else {
             if (!(forceWeiboEnabled && !hideWeiboInSettings && [specifier.identifier isEqualToString:@"WEIBO"]) && !(forceTencentWeiboEnabled && !hideTencentWeiboInSettings && [specifier.identifier isEqualToString:@"TENCENT_WEIBO"]))
                 %orig(specifier);
         }
-    }
-    else
+    } else
         %orig(specifier);
 }
+
 %end
 
 %hook SoundsPrefController
--(id)specifiers
-{
+
+- (NSArray *)specifiers {
     NSArray *specs = %orig;
 
-    if (tweakEnabled)
-    {
+    if (tweakEnabled) {
         if (hideTwitterInSettings)
             [self removeSpecifierID:@"SENT_TWEET"];
         if (hideFacebookInSettings)
@@ -686,46 +648,41 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
     }
     return specs;
 }
+
 %end
 
 %hook PrivacyController
--(id)specifiers
-{
+
+- (NSArray *)specifiers {
     NSArray *specs = %orig;
 
-    if (tweakEnabled)
-    {
+    if (tweakEnabled) {
         //Test whether weibo is supported
         bool weiboSupported = NO;
         bool tencentWeiboSupported = NO;
-        for (PSSpecifier *spec in specs)
-        {
+        for (PSSpecifier *spec in specs) {
             if ([spec.identifier isEqualToString:@"SINAWEIBO"])
                 weiboSupported = YES;
-            if (kCFCoreFoundationVersionNumber >= 847.20)
-            {
+            if (kCFCoreFoundationVersionNumber >= 847.20) {
                 if ([spec.identifier isEqualToString:@"TENCENTWEIBO"])
                     tencentWeiboSupported = YES;
             }
         }
-    
+
         if (hideTwitterInSettings)
             [self removeSpecifierID:@"TWITTER"];
         if (hideFacebookInSettings)
             [self removeSpecifierID:@"FACEBOOK"];
         if (weiboSupported && hideWeiboInSettings)
             [self removeSpecifierID:@"SINAWEIBO"];
-    
-        if (kCFCoreFoundationVersionNumber >= 847.20)
-        {
+
+        if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (hideTencentWeiboInSettings)
                 [self removeSpecifierID:@"TENCENTWEIBO"];
             //Remove group
             if (hideTwitterInSettings && hideFacebookInSettings && (!weiboSupported || hideWeiboInSettings) && (!tencentWeiboSupported || hideTencentWeiboInSettings))
                 [self removeSpecifierID:@"SOCIAL_PRIVACY_GROUP"];
-        }
-        else
-        {
+        } else {
             //Remove group
             if (hideTwitterInSettings && hideFacebookInSettings && (!weiboSupported || hideWeiboInSettings))
                 [self removeSpecifierID:@"SOCIAL_PRIVACY_GROUP"];
@@ -733,13 +690,13 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
     }
     return specs;
 }
+
 %end
 
 %hook SLComposeViewController
-+ (BOOL)isAvailableForServiceType:(NSString *)serviceType
-{
-    if (tweakEnabled)
-    {
+
++ (BOOL)isAvailableForServiceType:(NSString *)serviceType {
+    if (tweakEnabled) {
         if ([serviceType isEqualToString:SLServiceTypeFacebook] && hideFacebookComposer && isAppBlockFacebook)
             return NO;
 
@@ -755,16 +712,14 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
     return %orig;
 }
 
-+ (SLComposeViewController *)composeViewControllerForServiceType:(NSString *)serviceType
-{
-    if (tweakEnabled)
-    {
++ (SLComposeViewController *)composeViewControllerForServiceType:(NSString *)serviceType {
+    if (tweakEnabled) {
         if ([serviceType isEqualToString:SLServiceTypeFacebook] && hideFacebookComposer && isAppBlockFacebook)
             return nil;
-    
+
         if ([serviceType isEqualToString:SLServiceTypeTwitter] && hideTwitterComposer && isAppBlockTwitter)
             return nil;
-    
+
         if ([serviceType isEqualToString:SLServiceTypeSinaWeibo] && hideWeiboComposer && isAppBlockWeibo)
             return nil;
 
@@ -772,373 +727,447 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
             return nil;
     }
     return %orig;
-
 }
+
 %end
 
 %hook PLYoukuActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideYouku && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLTudouActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideTudou && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLYouTubeActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideYouTube && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLWallpaperActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideWallpaper && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLMailActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideMail && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLMMSActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideMMS && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLSaveToCameraRollActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideCamera && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLPublishingActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hidePublish && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLAssignToContactActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideContacts && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PLAlbumStreamActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hidePhotoStream && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook AddBookmarkUIActivity
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems
-{
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideBookmark && isAppBlockOthers)
         return NO;
     else
         return %orig(activityItems);
 }
+
 %end
 
 %hook AddToReadingListUIActivity
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems
-{
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideReadingList && isAppBlockOthers)
         return NO;
     else
         return %orig(activityItems);
 }
+
 %end
 
 %hook AddToHomeScreenUIActivity
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems
-{
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideHomeScreen && isAppBlockOthers)
         return NO;
     else
         return %orig(activityItems);
 }
+
 %end
 
 %hook PUYoukuActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideYouku && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUTudouActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideTudou && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUYouTubeActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideYouTube && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUWallpaperActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideWallpaper && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUMailActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideMail && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUMessageActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
-    if (tweakEnabled && hideMMS && isAppBlockOthers)
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideMessage && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUSaveToCameraRollActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideCamera && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUPublishingActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hidePublish && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUAssignToContactActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideContacts && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUAlbumStreamActivity
-- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)arg1
-{
+
+- (BOOL)_canPerformWithSuppliedActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hidePhotoStream && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUAirPlayActivity
-- (BOOL)canPerformWithActivityItems:(id)arg1
-{
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideAirPlay && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
 %hook PUSlideShowActivity
-- (BOOL)canPerformWithActivityItems:(id)arg1
-{
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideSlideShow && isAppBlockOthers)
         return NO;
     else
-        return %orig(arg1);
+        return %orig(activityItems);
 }
+
 %end
 
-/*
-%hook UIActionSheet
-- (void)showInView:(UIView *)view
-{
-    %orig(view);
+%hook UIAddToReadingListActivity
 
-    int firstButton = 0, lastButton = 0;
-    int readButton;
-    for (int i=0; i<[self.subviews count]; i++)
-    {
-        UIView *view = [self.subviews objectAtIndex:i];
-
-        if ([[NSString stringWithFormat:@"%s", class_getName([view class])] isEqualToString:@"UIAlertButton"])
-        {
-            if (firstButton == 0)
-                firstButton = i;
-
-            lastButton = i; //Cancel button
-            
-            if ([[(UIAlertButton *)view title] isEqualToString:@"添加到阅读列表"])
-                readButton = i;
-        }
-    }
-
-    [[self.subviews objectAtIndex:readButton] removeFromSuperview];
-
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {}
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideReadingList && isAppBlockOthers)
+        return NO;
     else
-    {
-        if (self.frame.size.width == 320.0f)
-        {
-            for (int i=readButton; i<lastButton; i++)
-            {
-                UIView *view = [self.subviews objectAtIndex:i];
-            
-                CGRect frame = view.frame;
-                frame.origin.y -= 53;
-                view.frame = frame;
-            }
-            CGRect frame = self.frame;
-            frame.origin.y += 53;
-            frame.size.height -= 53;
-            self.frame = frame;
-        }
-        else
-        {
-            UIView *view = CHIvar(self, _buttonTableView, UIView *);
-            UITableView *tableView = [view.subviews objectAtIndex:0];
-            NSLog(@"numberOfSections %d", [tableView numberOfSections]);
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
-            [[tableView cellForRowAtIndexPath:indexPath] removeFromSuperview];
-        }
-    
-    }
+        return %orig(activityItems);
 }
 
-%end*/
+%end
+
+%hook UIAssignToContactActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideContacts && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook UICopyToPasteboardActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hidePrint && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook UIMailActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideMail && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook UIMessageActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideMessage && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook UIPrintActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hidePrint && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook UISaveToCameraRollActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideCamera && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook _UIAirDropActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideAirDrop && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook _UIOpenWithAppActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideOpenWith && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook _UIQuickLookActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideQuickLook && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
 
 static BOOL weeAppLoaded = NO;
 
 %hook SBWeeApp
-- (void)viewWillAppear
-{
-    if ([self.sectionID isEqualToString:@"com.apple.SocialWeeApp"])
-        weeAppLoaded = NO;
+
+- (void)viewWillAppear {
+    if (kCFCoreFoundationVersionNumber < 847.20) {
+        if ([self.sectionID isEqualToString:@"com.apple.SocialWeeApp"])
+            weeAppLoaded = NO;
+    }
     %orig;
 }
 
-- (UIView *)view
-{
+- (UIView *)view {
     UIView *view = %orig;
-    if ([self.sectionID isEqualToString:@"com.apple.SocialWeeApp"])
-        weeAppLoaded = YES;
+    if (kCFCoreFoundationVersionNumber < 847.20) {
+        if ([self.sectionID isEqualToString:@"com.apple.SocialWeeApp"])
+            weeAppLoaded = YES;
+    }
     return view;
 }
 
 %end
 
 %hook ACAccountStore
-+ (int)accountsWithAccountTypeIdentifierExist:(NSString *)identifier
-{
-    if (tweakEnabled && weeAppLoaded)
-    {
-        if (hideTwitterInWidget && [identifier isEqualToString:ACAccountTypeIdentifierTwitter])
-        {
-            NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
-            if (bundleIdentifier)
-            {
-                if ([bundleIdentifier isEqualToString:@"com.apple.springboard"])
-                    return 2;
+
++ (int)accountsWithAccountTypeIdentifierExist:(NSString *)identifier {
+    if (kCFCoreFoundationVersionNumber < 847.20) {
+        if (tweakEnabled && weeAppLoaded) {
+            if (hideTwitterInWidget && [identifier isEqualToString:ACAccountTypeIdentifierTwitter]) {
+                NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
+                if (bundleIdentifier) {
+                    if ([bundleIdentifier isEqualToString:@"com.apple.springboard"])
+                        return 2;
+                }
             }
-        }
-    
-        if (hideFacebookInWidget && [identifier isEqualToString:ACAccountTypeIdentifierFacebook])
-        {
-            NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
-            if (bundleIdentifier)
-            {
-                if ([bundleIdentifier isEqualToString:@"com.apple.springboard"])
-                    return 2;
+
+            if (hideFacebookInWidget && [identifier isEqualToString:ACAccountTypeIdentifierFacebook]) {
+                NSString *bundleIdentifier = [NSBundle mainBundle].bundleIdentifier;
+                if (bundleIdentifier) {
+                    if ([bundleIdentifier isEqualToString:@"com.apple.springboard"])
+                        return 2;
+                }
             }
         }
     }
 
     return %orig(identifier);
 }
+
 %end
 
-%ctor
-{
-    @autoreleasepool
-    {
+%ctor {
+    @autoreleasepool {
         CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, PreferencesChangedCallback, CFSTR(PreferencesChangedNotification), NULL, CFNotificationSuspensionBehaviorCoalesce);
         LoadPreferences();
     }

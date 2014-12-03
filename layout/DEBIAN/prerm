@@ -1,5 +1,4 @@
 #!/bin/sh
-rm -f /Library/PreferenceLoader/Preferences/PrivateSpace/PrivateSpace.plist
 if [[ $1 == remove ]]; then
 	rm -f /var/mobile/Library/Preferences/com.autopear.privatespace.plist
 fi

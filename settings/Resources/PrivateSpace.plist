@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>entry</key>
-	<dict>
-		<key>cell</key>
-		<string>PSLinkCell</string>
-		<key>icon</key>
-		<string>icon.png</string>
-		<key>label</key>
-		<string>Private Space</string>
-	</dict>
 	<key>items</key>
 	<array>
 		<dict>
@@ -54,6 +45,28 @@
 			<string>PSFacebookInSettings</string>
 			<key>label</key>
 			<string>Settings</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
+			<string>PSFacebookInNotificationCenter</string>
+			<key>label</key>
+			<string>Share Widget</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>700</real>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>ALChangeNotification</key>
@@ -133,6 +146,28 @@
 			<string>Settings</string>
 		</dict>
 		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
+			<string>PSTwitterInNotificationCenter</string>
+			<key>label</key>
+			<string>Share Widget</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>700</real>
+					<real>800</real>
+				</array>
+			</dict>
+		</dict>
+		<dict>
 			<key>ALChangeNotification</key>
 			<string>com.autopear.privatespace.preferenceschanged</string>
 			<key>ALSectionDescriptors</key>
@@ -194,6 +229,13 @@
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Hide Flickr In</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -208,6 +250,13 @@
 			<string>PSFlickrInSettings</string>
 			<key>label</key>
 			<string>Settings</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>ALChangeNotification</key>
@@ -237,6 +286,13 @@
 			<true/>
 			<key>label</key>
 			<string>Hide In Applications:</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -251,12 +307,26 @@
 			<string>PSFlickrInActivity</string>
 			<key>label</key>
 			<string>Activity</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Hide Vimeo In</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -271,6 +341,13 @@
 			<string>PSVimeoInSettings</string>
 			<key>label</key>
 			<string>Settings</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>ALChangeNotification</key>
@@ -300,6 +377,13 @@
 			<true/>
 			<key>label</key>
 			<string>Hide In Applications:</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -314,6 +398,13 @@
 			<string>PSVimeoInActivity</string>
 			<key>label</key>
 			<string>Activity</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -417,6 +508,13 @@
 			<string>Enable Tencent Weibo without a Chinese keyboard.</string>
 			<key>label</key>
 			<string>Hide Tencent Weibo In</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -431,6 +529,13 @@
 			<string>PSTencentWeiboInSettings</string>
 			<key>label</key>
 			<string>Settings</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>ALChangeNotification</key>
@@ -460,6 +565,13 @@
 			<true/>
 			<key>label</key>
 			<string>Hide In Applications:</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -474,6 +586,13 @@
 			<string>PSTencentWeiboInActivity</string>
 			<key>label</key>
 			<string>Activity</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -488,6 +607,13 @@
 			<string>PSTencentWeiboComposer</string>
 			<key>label</key>
 			<string>Disable Composer</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -504,6 +630,13 @@
 			<string>PSTencentWeiboForceEnabled</string>
 			<key>label</key>
 			<string>Force Enabled</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -553,6 +686,13 @@
 			<string>PSAirDropInActivity</string>
 			<key>label</key>
 			<string>AirDrop</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -581,6 +721,28 @@
 			<string>PSCopyInActivity</string>
 			<key>label</key>
 			<string>Copy</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
+			<string>PSFlickrInActivity</string>
+			<key>label</key>
+			<string>Flickr</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>700</real>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -634,6 +796,20 @@
 			<key>defaults</key>
 			<string>com.autopear.privatespace</string>
 			<key>key</key>
+			<string>PSOpenWithInActivity</string>
+			<key>label</key>
+			<string>Open With...</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
 			<string>PSPhotoStreamInActivity</string>
 			<key>label</key>
 			<string>Photo Stream</string>
@@ -651,6 +827,20 @@
 			<string>PSPrintInActivity</string>
 			<key>label</key>
 			<string>Print</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
+			<string>PSQuickLookInActivity</string>
+			<key>label</key>
+			<string>Quick Look</string>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -693,6 +883,28 @@
 			<string>PSWallpaperInActivity</string>
 			<key>label</key>
 			<string>Use as Wallpaper</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
+			<string>PSVimeoInActivity</string>
+			<key>label</key>
+			<string>Vimeo</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>700</real>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -775,6 +987,13 @@
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Hide Photos Activities</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -789,6 +1008,13 @@
 			<string>PSAirPlayInActivity</string>
 			<key>label</key>
 			<string>AirPlay</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -803,12 +1029,19 @@
 			<string>PSSlideShowInActivity</string>
 			<key>label</key>
 			<string>Slide Show</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Copyright © 2013 Merlin Mao</string>
+			<string>Copyright © 2013-2014 Merlin Mao</string>
 		</dict>
 	</array>
 	<key>title</key>
