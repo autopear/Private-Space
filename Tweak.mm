@@ -108,6 +108,14 @@
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 @end
 
+@interface SKUIActivityTypeGift : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
+@end
+
+@interface SKUIActivityTypeWishlist : UIActivity
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
+@end
+
 @interface UIAlertButton : UIButton {
     float _imageOffset;
 }
@@ -183,6 +191,7 @@ static BOOL hideOpenWith = NO;
 static BOOL hideQuickLook = NO;
 //App Store & iTunes
 static BOOL hideGift = NO;
+static BOOL hideWishList = NO;
 //Safari
 static BOOL hideBookmark = NO;
 static BOOL hideHomeScreen = NO;
@@ -370,6 +379,11 @@ static void LoadPreferences() {
     else
         hideGift = NO;
 
+    if ([prefs objectForKey:@"PSWishListInActivity"])
+        hideWishList = [[prefs objectForKey:@"PSWishListInActivity"] boolValue];
+    else
+        hideWishList = NO;
+
     if ([prefs objectForKey:@"PSBookmarkInActivity"])
         hideBookmark = [[prefs objectForKey:@"PSBookmarkInActivity"] boolValue];
     else
@@ -502,6 +516,12 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
         if (hideGift && isAppBlockOthers && ![excludes containsObject:@"com.apple.AppStore.gift"])
             [excludes addObject:@"com.apple.AppStore.gift"];
 
+        if (hideGift && isAppBlockOthers && ![excludes containsObject:@"SKUIActivityTypeGift"])
+            [excludes addObject:@"SKUIActivityTypeGift"];
+
+        if (hideWishList && isAppBlockOthers && ![excludes containsObject:@"SKUIActivityTypeWishlist"])
+            [excludes addObject:@"SKUIActivityTypeWishlist"];
+
         if (kCFCoreFoundationVersionNumber >= 847.20) {
             if (hideTencentWeiboInActivity && isAppBlockTencentWeibo && ![excludes containsObject:UIActivityTypePostToTencentWeibo])
                 [excludes addObject:UIActivityTypePostToTencentWeibo];
@@ -535,6 +555,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
     return excludes;
 }
+
 %end
 
 %hook PrefsListController
@@ -1108,6 +1129,28 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
     if (tweakEnabled && hideQuickLook && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+}
+
+%end
+
+%hook SKUIAddToWishlistActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideWishList && isAppBlockOthers)
+        return NO;
+    else
+        return %orig(activityItems);
+    }
+
+%end
+
+%hook SKUIGiftActivity
+
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    if (tweakEnabled && hideGift && isAppBlockOthers)
         return NO;
     else
         return %orig(activityItems);

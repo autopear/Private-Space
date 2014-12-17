@@ -683,6 +683,27 @@
 			<key>defaults</key>
 			<string>com.autopear.privatespace</string>
 			<key>key</key>
+			<string>PSWishListInActivity</string>
+			<key>label</key>
+			<string>Add to Wish List</string>
+			<key>pl_filter</key>
+			<dict>
+				<key>CoreFoundationVersion</key>
+				<array>
+					<real>800</real>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.autopear.privatespace.preferenceschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.autopear.privatespace</string>
+			<key>key</key>
 			<string>PSAirDropInActivity</string>
 			<key>label</key>
 			<string>AirDrop</string>
